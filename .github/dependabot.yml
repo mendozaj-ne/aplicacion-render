@@ -1,0 +1,11 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    # Optional: Open max 5 PRs at a time to avoid spamming
+    open-pull-requests-limit: 5
+    # Optional: Assign specific reviewers
+    reviewers:
+      - "tiempor3al"

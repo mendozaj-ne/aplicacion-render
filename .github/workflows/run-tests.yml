@@ -1,0 +1,27 @@
+name: Node.js CI (Yarn)
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'yarn'
+
+      - name: Instalar dependencias
+        # --frozen-lockfile asegura que no se modifique el yarn.lock
+        # Si el yarn.lock no coincide con el package.json, el CI fallará (esto es bueno para seguridad)
+        run: yarn install --frozen-lockfile
+
+      - name: Correr tests con Jest
+        run: yarn test
